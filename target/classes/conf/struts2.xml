@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.action.excludePattern" value="/rest/.*" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.configuration.xml.reload" value="false" />
+	<constant name="struts.action.extension" value="shtml,," />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.custom.i18n.resources" value="/resources" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<package name="ap-default" namespace="/" extends="tradevan-framework">
+		<!-- <result-types> <result-type name="dispatcher" class="org.apache.struts2.dispatcher.ServletDispatcherResult" 
+			default="true"/> </result-types> -->
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="auditlog"
+				class="idv.heimlich.domain.interceptor.interceptor.AuditLogInterceptor">
+			</interceptor>
+			<interceptor-stack name="apInterceptor">
+				<interceptor-ref name="auditlog" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="apInterceptor" />
+	</package>
+
+	<!-- Add packages here -->
+	<include file="conf/modules/app.xml" />
+
+</struts>

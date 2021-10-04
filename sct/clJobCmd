@@ -1,0 +1,22 @@
+#--------------------------------------------------------------------#
+#  program id : clJobCmd                                             #     								 #
+#--------------------------------------------------------------------#
+
+execute()
+{
+
+
+. /APCLMS/def/SET_APCLMS_ENV.def
+   $JAVA_HOME/bin/java/idv/heimlich/Monitor/domain controller.JobCmdController
+   checkCode.sct $0 $?
+}
+
+#--------------------------------------------------------------------#
+#                            MAIN ROUTINE                            #
+#--------------------------------------------------------------------#
+
+while true
+do
+  execute
+  sleep 180
+done
